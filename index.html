@@ -34,7 +34,7 @@
       text-align: center;
     }
 
-    img.card-img {
+    .card-img {
       max-width: 90%;
       height: auto;
       margin-top: 20px;
@@ -67,6 +67,19 @@
       }
     }
 
+    .footer {
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 1s ease;
+      color: white;
+      margin-top: 1em;
+      text-align: center;
+    }
+
+    .footer.show {
+      opacity: 0.6;
+    }
+
     @media (min-width: 768px) {
       .container {
         flex-direction: row;
@@ -77,41 +90,23 @@
         padding: 4em 2em;
       }
 
-      .text-block,
-      .result-container {
-        width: 48%;
-      }
-
       .text-block {
+        width: 48%;
         text-align: left;
         margin-top: 2em;
       }
 
-      .result-container {
+      .card-area {
+        width: 48%;
         text-align: right;
       }
 
-      img.card-img {
-        max-width: 100%;
-      }
-    }
-
-    .footer {
-      margin-top: 1em;
-      font-size: 0.75rem;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 1s ease;
-      color: white;
-    }
-
-    .footer.show {
-      opacity: 0.6;
-    }
-
-    @media (min-width: 768px) {
       .footer {
         text-align: right;
+      }
+
+      .card-img {
+        max-width: 100%;
       }
     }
   </style>
@@ -122,7 +117,7 @@
       <h1 id="title">Claim Your Agency</h1>
       <button id="drawBtn" onclick="drawCard()">Draw</button>
     </div>
-    <div class="result-container" id="result-container">
+    <div class="card-area">
       <div id="result"></div>
       <footer class="footer" id="footer">
         <div>Company: a Megagame</div>
@@ -137,7 +132,6 @@
       "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
       "https://unclassifiablecenter.github.io/company/images/TheToken.png",
       "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
-      // Add more URLs here...
     ];
 
     function drawCard() {
