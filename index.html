@@ -78,17 +78,16 @@
       }
 
       .text-block,
-      #result {
+      .result-container {
         width: 48%;
       }
 
       .text-block {
         text-align: left;
-        margin-bottom: 0;
         margin-top: 2em;
       }
 
-      #result {
+      .result-container {
         text-align: right;
       }
 
@@ -98,22 +97,22 @@
     }
 
     .footer {
-      position: fixed;
-      bottom: 1em;
-      left: 0;
-      width: 100%;
+      margin-top: 1em;
       font-size: 0.75rem;
       text-align: center;
       opacity: 0;
-      pointer-events: none;
       transition: opacity 1s ease;
       color: white;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 0.5em 0;
     }
 
     .footer.show {
       opacity: 0.6;
+    }
+
+    @media (min-width: 768px) {
+      .footer {
+        text-align: right;
+      }
     }
   </style>
 </head>
@@ -123,15 +122,14 @@
       <h1 id="title">Claim Your Agency</h1>
       <button id="drawBtn" onclick="drawCard()">Draw</button>
     </div>
-    <div id="result"></div>
-  </div>
-
-  <footer class="footer" id="footer">
-    <div>
-      <div>Company: a Megagame</div>
-      <div>Center for Unclassifiable Technologies and Experiences (C.U.T.E.)</div>
+    <div class="result-container" id="result-container">
+      <div id="result"></div>
+      <footer class="footer" id="footer">
+        <div>Company: a Megagame</div>
+        <div>Center for Unclassifiable Technologies and Experiences (C.U.T.E.)</div>
+      </footer>
     </div>
-  </footer>
+  </div>
 
   <script>
     const cards = [
