@@ -37,8 +37,7 @@
 
     #cards {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 2em;
       margin-top: 2em;
@@ -67,9 +66,10 @@
       transition: opacity 2s ease;
     }
 
-    @media(min-width: 768px) {
+    @media (max-width: 767px) {
       #cards {
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -110,7 +110,7 @@
     const footer = document.getElementById('footer');
 
     let drawCount = 0;
-    let chosenCategories = [];
+    let selectedCategories = [];
 
     function getRandomItem(arr) {
       return arr[Math.floor(Math.random() * arr.length)];
@@ -118,27 +118,25 @@
 
     function drawCard() {
       if (drawCount === 0) {
-        // Choose 3 unique categories
-        chosenCategories = [...allCategories].sort(() => 0.5 - Math.random()).slice(0, 3);
+        // Pick 3 unique random categories
+        selectedCategories = [...allCategories].sort(() => 0.5 - Math.random()).slice(0, 3);
       }
 
-      const category = chosenCategories[drawCount];
-      const card = getRandomItem(categories[category]);
-      const imageUrl = `${baseUrl}${category}/${card}`;
-
+      const category = selectedCategories[drawCount];
+      const cardImage = getRandomItem(categories[category]);
       const img = document.createElement('img');
-      img.src = imageUrl;
-      img.alt = card;
+      img.src = `${baseUrl}${category}/${cardImage}`;
+      img.alt = cardImage;
       img.className = 'card';
-      cardsContainer.appendChild(img);
 
+      cardsContainer.appendChild(img);
       drawCount++;
 
       if (drawCount === 1) {
         drawBtn.textContent = 'Draw Second Card';
       } else if (drawCount === 2) {
         drawBtn.textContent = 'Draw Third Card';
-      } else {
+      } else if (drawCount === 3) {
         drawBtn.remove();
         title.textContent = 'Your agency has been revealed.';
         document.body.style.backgroundColor = 'black';
