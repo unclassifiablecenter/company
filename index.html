@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Draw Your Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+      text-align: center;
+      background-color: white;
+      color: black;
+      margin: 0;
+      padding: 2rem;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      max-width: 90%;
+      height: auto;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #cardsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    #revealMessage {
+      opacity: 0;
+      transition: opacity 1s ease 0.3s;
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      color: white;
+    }
+    #revealMessage.visible {
+      opacity: 1;
+    }
+    footer {
+      opacity: 0;
+      transition: opacity 1s ease 0.6s;
+      font-size: 0.75rem;
+      margin-top: 2rem;
+      color: white;
+      text-align: right;
+      width: 100%;
+      padding-right: 1rem;
+    }
+    footer.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="headline">Claim Your Agency</h1>
+  <button id="drawButton" onclick="drawCard()">Draw First Card</button>
+  <div id="cardsContainer"></div>
+  <div id="revealMessage">Your agency has been revealed.</div>
+  <footer id="footer">Company: a Megagame<br>Center for Unclassifiable Technologies and Experiences (C.U.T.E.)</footer>
+
+  <script>
+    const categories = {
+      creative: [
+        "TheBasementAlchemist", "TheCultLeader", "TheDoneOne", "TheRememberer", "TheWhiteKnuckler"
+      ],
+      narrative: [
+        "TheCassandra", "ThePressWhisperer", "ThePrism", "TheReceiptHoarder", "TheUnbrandable"
+      ],
+      social: [
+        "TheChaosBroker", "TheResilientJoker", "TheToken", "TheVanisher", "TheVibeArchitect"
+      ],
+      spiritual: [
+        "TheAncestralChannel", "TheBoneListener", "TheHolyFire", "TheNightHollow", "TheSoftPower"
+      ],
+      systemic: [
+        "TheArchitectofElsewhere", "TheGlue", "TheQuietlyBlacklisted", "TheRadicalonRetainer", "TheUltimateNepoKid"
+      ]
+    };
+
+    const categoryKeys = Object.keys(categories);
+    let selectedCategories = [];
+    let drawnCount = 0;
+
+    function drawCard() {
+      if (drawnCount === 0) {
+        selectedCategories = categoryKeys
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+      }
+
+      if (drawnCount >= 3) return;
+
+      const category = selectedCategories[drawnCount];
+      const cards = categories[category];
+      const card = cards[Math.floor(Math.random() * cards.length)];
+      const cardUrl = `https://raw.githubusercontent.com/unclassifiablecenter/company/main/images/${category}/${card}.png`;
+
+      const img = document.createElement("img");
+      img.src = cardUrl;
+      img.alt = card;
+      img.className = "card";
+
+      document.getElementById("cardsContainer").appendChild(img);
+
+      setTimeout(() => {
+        img.classList.add("visible");
+      }, 100);
+
+      drawnCount++;
+
+      const drawButton = document.getElementById("drawButton");
+      if (drawnCount === 1) {
+        drawButton.textContent = "Draw Second Card";
+      } else if (drawnCount === 2) {
+        drawButton.textContent = "Draw Third Card";
+      } else if (drawnCount === 3) {
+        setTimeout(() => {
+          document.getElementById("revealMessage").classList.add("visible");
+          document.getElementById("footer").classList.add("visible");
+          drawButton.remove();
+          document.body.style.backgroundColor = "black";
+        }, 1400);
+      }
+    }
+  </script>
+</body>
+</html>
