@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Draw a Card</title>
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-    img { max-width: 300px; margin-top: 20px; }
-    button { padding: 10px 20px; font-size: 16px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 2em;
+      padding: 0;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
   </style>
 </head>
 <body>
@@ -15,11 +36,11 @@
 
   <script>
     const cards = [
-      "https://github.com/unclassifiablecenter/company/blob/main/images/TheAncestralChannel.png",
-      "https://github.com/unclassifiablecenter/company/blob/main/images/ThePressWhisperer.png",
-      "https://github.com/unclassifiablecenter/company/blob/main/images/TheToken.png",
-      "https://github.com/unclassifiablecenter/company/blob/main/images/TheWhiteKnuckler.png",
-      // Replace with your actual PNG URLs...
+      "https://raw.githubusercontent.com/unclassifiablecenter/company/main/images/TheAncestralChannel.png",
+      "https://raw.githubusercontent.com/unclassifiablecenter/company/main/images/ThePressWhisperer.png",
+      "https://raw.githubusercontent.com/unclassifiablecenter/company/main/images/TheToken.png",
+      "https://raw.githubusercontent.com/unclassifiablecenter/company/main/images/TheWhiteKnuckler.png"
+      // Add more raw URLs here...
     ];
 
     function drawCard() {
@@ -32,5 +53,5 @@
       document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
     }
   </script>
-</body> 
+</body>
 </html>
