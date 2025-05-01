@@ -5,15 +5,16 @@
   <title>Draw a Card</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Helvetica, Arial, sans-serif;
       text-align: center;
       margin: 2em;
       padding: 0;
     }
-    img {
+    img.card-img {
       max-width: 90%;
       height: auto;
       margin-top: 20px;
+      animation: fadeSlideIn 0.5s ease-out;
     }
     button {
       padding: 12px 24px;
@@ -27,11 +28,22 @@
     button:hover {
       background-color: #555;
     }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Draw Your Card</h1>
-  <button onclick="drawCard()">Draw</button>
+  <h1>Claim Your Agency...</h1>
+  <button onclick="drawCard()">Draw a Card</button>
   <div id="result"></div>
 
   <script>
@@ -43,18 +55,17 @@
       // Add more card URLs here...
     ];
 
-    let cards = [...allCards]; // working draw pile
+    let cards = [...allCards];
 
     function drawCard() {
       if (cards.length === 0) {
-        cards = [...allCards]; // silently reshuffle
+        cards = [...allCards];
       }
 
       const index = Math.floor(Math.random() * cards.length);
-      const url = cards.splice(index, 1)[0]; // draw + remove from pile
-      document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
+      const url = cards.splice(index, 1)[0];
+      document.getElementById('result').innerHTML = `<img src="${url}" alt="Card" class="card-img">`;
     }
   </script>
 </body>
 </html>
-
