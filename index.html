@@ -10,8 +10,9 @@
       padding: 0;
       font-family: Helvetica, Arial, sans-serif;
       text-align: center;
-      background-color: black;
-      color: white;
+      background-color: white;
+      color: black;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
     img.card-img {
@@ -26,13 +27,13 @@
       font-size: 18px;
       border: none;
       border-radius: 8px;
-      background-color: #fff;
-      color: black;
+      background-color: #333;
+      color: white;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #ddd;
+      background-color: #555;
     }
 
     @keyframes fadeSlideIn {
@@ -45,21 +46,12 @@
         transform: translateY(0);
       }
     }
-
-    #already-drawn {
-      margin-top: 1em;
-      font-style: italic;
-      font-size: 1.1em;
-      display: none;
-      animation: fadeSlideIn 0.4s ease-out;
-    }
   </style>
 </head>
 <body>
-  <h1>Claim Your Agency</h1>
+  <h1 id="title">Claim Your Agency</h1>
   <button id="drawBtn" onclick="drawCard()">Draw</button>
   <div id="result"></div>
-  <div id="already-drawn">Your agency has already been revealed.</div>
 
   <script>
     const cards = [
@@ -73,11 +65,18 @@
     function drawCard() {
       const index = Math.floor(Math.random() * cards.length);
       const url = cards[index];
+
+      // Show card
       document.getElementById('result').innerHTML = `<img src="${url}" alt="Card" class="card-img">`;
+
+      // Hide button
       document.getElementById('drawBtn').style.display = 'none';
-      document.getElementById('already-drawn').style.display = 'block';
+
+      // Change title and background
+      document.getElementById('title').textContent = "Your agency has already been revealed.";
+      document.body.style.backgroundColor = "black";
+      document.body.style.color = "white";
     }
   </script>
 </body>
 </html>
-
