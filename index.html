@@ -2,13 +2,15 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Draw a Card</title>
+  <title>Claim Your Agency</title>
   <style>
     body {
       font-family: Helvetica, Arial, sans-serif;
       text-align: center;
       margin: 2em;
       padding: 0;
+      background-color: black;
+      color: white;
     }
     img.card-img {
       max-width: 90%;
@@ -21,12 +23,12 @@
       font-size: 18px;
       border: none;
       border-radius: 8px;
-      background-color: #333;
-      color: white;
+      background-color: #fff;
+      color: black;
       cursor: pointer;
     }
     button:hover {
-      background-color: #555;
+      background-color: #ddd;
     }
 
     @keyframes fadeSlideIn {
@@ -39,32 +41,35 @@
         transform: translateY(0);
       }
     }
+
+    #already-drawn {
+      margin-top: 1em;
+      font-style: italic;
+      font-size: 1.1em;
+    }
   </style>
 </head>
 <body>
-  <h1>Claim Your Agency.</h1>
-  <button onclick="drawCard()">Draw a Card</button>
+  <h1>Claim Your Agency</h1>
+  <button id="drawBtn" onclick="drawCard()">Draw</button>
   <div id="result"></div>
+  <div id="already-drawn" style="display: none;">Your agency has already been revealed.</div>
 
   <script>
-    const allCards = [
+    const cards = [
       "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
       "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
       "https://unclassifiablecenter.github.io/company/images/TheToken.png",
       "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
-      // Add more card URLs here...
+      // Add more URLs here...
     ];
 
-    let cards = [...allCards];
-
     function drawCard() {
-      if (cards.length === 0) {
-        cards = [...allCards];
-      }
-
       const index = Math.floor(Math.random() * cards.length);
-      const url = cards.splice(index, 1)[0];
+      const url = cards[index];
       document.getElementById('result').innerHTML = `<img src="${url}" alt="Card" class="card-img">`;
+      document.getElementById('drawBtn').style.display = 'none';
+      document.getElementById('already-drawn').style.display = 'block';
     }
   </script>
 </body>
