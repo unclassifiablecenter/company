@@ -4,20 +4,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claim Your Agency</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
       font-family: Helvetica, Arial, sans-serif;
       text-align: center;
-      margin: 2em;
-      padding: 0;
       background-color: black;
       color: white;
     }
+
     img.card-img {
       max-width: 90%;
       height: auto;
       margin-top: 20px;
       animation: fadeSlideIn 0.5s ease-out;
     }
+
     button {
       padding: 12px 24px;
       font-size: 18px;
@@ -27,6 +30,7 @@
       color: black;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #ddd;
     }
@@ -46,14 +50,16 @@
       margin-top: 1em;
       font-style: italic;
       font-size: 1.1em;
+      display: none;
+      animation: fadeSlideIn 0.4s ease-out;
     }
   </style>
 </head>
 <body>
-  <h1>Claim Your Agency.</h1>
+  <h1>Claim Your Agency</h1>
   <button id="drawBtn" onclick="drawCard()">Draw</button>
   <div id="result"></div>
-  <div id="already-drawn" style="display: none;">Your agency has already been revealed.</div>
+  <div id="already-drawn">Your agency has already been revealed.</div>
 
   <script>
     const cards = [
@@ -74,3 +80,4 @@
   </script>
 </body>
 </html>
+
