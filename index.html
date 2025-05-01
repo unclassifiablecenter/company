@@ -43,20 +43,19 @@
     // Add more card URLs here...
   ];
 
-  let cards = [...allCards]; // make a working copy
+  let cards = [...allCards]; // working draw pile
 
   function drawCard() {
     if (cards.length === 0) {
-      cards = [...allCards]; // reset the deck
-      document.getElementById('result').innerHTML = "All cards have been drawn. Deck reset!";
-      return;
+      cards = [...allCards]; // silently reshuffle
     }
 
     const index = Math.floor(Math.random() * cards.length);
-    const url = cards.splice(index, 1)[0]; // remove from working deck
+    const url = cards.splice(index, 1)[0]; // draw + remove from pile
     document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
   }
 </script>
+
 
 </body>
 </html>
