@@ -34,24 +34,29 @@
   <button onclick="drawCard()">Draw</button>
   <div id="result"></div>
 
-  <script>
-    const cards = [
-  "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
-  "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
-  "https://unclassifiablecenter.github.io/company/images/TheToken.png",
-  "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
-      // Add more raw GitHub URLs here as needed
-    ];
+<script>
+  const allCards = [
+    "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
+    "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
+    "https://unclassifiablecenter.github.io/company/images/TheToken.png",
+    "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
+    // Add more card URLs here...
+  ];
 
-    function drawCard() {
-      if (cards.length === 0) {
-        document.getElementById('result').innerHTML = "All cards have been drawn.";
-        return;
-      }
-      const index = Math.floor(Math.random() * cards.length);
-      const url = cards.splice(index, 1)[0]; // remove from list
-      document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
+  let cards = [...allCards]; // make a working copy
+
+  function drawCard() {
+    if (cards.length === 0) {
+      cards = [...allCards]; // reset the deck
+      document.getElementById('result').innerHTML = "All cards have been drawn. Deck reset!";
+      return;
     }
-  </script>
+
+    const index = Math.floor(Math.random() * cards.length);
+    const url = cards.splice(index, 1)[0]; // remove from working deck
+    document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
+  }
+</script>
+
 </body>
 </html>
