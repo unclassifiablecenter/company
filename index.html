@@ -96,6 +96,23 @@
         max-width: 100%;
       }
     }
+
+    .footer {
+      position: fixed;
+      bottom: 1em;
+      left: 0;
+      width: 100%;
+      font-size: 0.75rem;
+      color: inherit;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+
+    .footer.show {
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
@@ -107,22 +124,31 @@
     <div id="result"></div>
   </div>
 
+  <footer class="footer" id="footer">
+    <div>
+      <div>Company: a Megagame</div>
+      <div>Center for Unclassifiable Technologies and Experiences (C.U.T.E.)</div>
+    </div>
+  </footer>
+
   <script>
     const cards = [
       "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
       "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
       "https://unclassifiablecenter.github.io/company/images/TheToken.png",
       "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
-      // Add more URLs here...
+      // Add more card URLs here...
     ];
 
     function drawCard() {
       const index = Math.floor(Math.random() * cards.length);
       const url = cards[index];
+
       document.getElementById('result').innerHTML = `<img src="${url}" alt="Card" class="card-img">`;
       document.getElementById('drawBtn').style.display = 'none';
       document.getElementById('title').textContent = "Your agency has been revealed.";
       document.body.classList.add('revealed');
+      document.getElementById('footer').classList.add('show');
     }
   </script>
 </body>
