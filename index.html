@@ -23,13 +23,15 @@
     .container {
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       padding: 2em;
     }
 
     .text-block {
       margin-bottom: 1em;
+      text-align: center;
     }
 
     img.card-img {
@@ -68,20 +70,22 @@
     @media (min-width: 768px) {
       .container {
         flex-direction: row;
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
         max-width: 1000px;
         margin: 0 auto;
+        padding: 4em 2em;
       }
 
-      .text-block, #result {
-        width: 50%;
-        padding: 1em;
+      .text-block,
+      #result {
+        width: 48%;
       }
 
       .text-block {
         text-align: left;
-        margin-top: 4em;
+        margin-bottom: 0;
+        margin-top: 2em;
       }
 
       #result {
@@ -115,7 +119,6 @@
     function drawCard() {
       const index = Math.floor(Math.random() * cards.length);
       const url = cards[index];
-
       document.getElementById('result').innerHTML = `<img src="${url}" alt="Card" class="card-img">`;
       document.getElementById('drawBtn').style.display = 'none';
       document.getElementById('title').textContent = "Your agency has been revealed.";
