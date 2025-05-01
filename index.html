@@ -34,28 +34,27 @@
   <button onclick="drawCard()">Draw</button>
   <div id="result"></div>
 
-<script>
-  const allCards = [
-    "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
-    "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
-    "https://unclassifiablecenter.github.io/company/images/TheToken.png",
-    "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
-    // Add more card URLs here...
-  ];
+  <script>
+    const allCards = [
+      "https://unclassifiablecenter.github.io/company/images/TheAncestralChannel.png",
+      "https://unclassifiablecenter.github.io/company/images/ThePressWhisperer.png",
+      "https://unclassifiablecenter.github.io/company/images/TheToken.png",
+      "https://unclassifiablecenter.github.io/company/images/TheWhiteKnuckler.png"
+      // Add more card URLs here...
+    ];
 
-  let cards = [...allCards]; // working draw pile
+    let cards = [...allCards]; // working draw pile
 
-  function drawCard() {
-    if (cards.length === 0) {
-      cards = [...allCards]; // silently reshuffle
+    function drawCard() {
+      if (cards.length === 0) {
+        cards = [...allCards]; // silently reshuffle
+      }
+
+      const index = Math.floor(Math.random() * cards.length);
+      const url = cards.splice(index, 1)[0]; // draw + remove from pile
+      document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
     }
-
-    const index = Math.floor(Math.random() * cards.length);
-    const url = cards.splice(index, 1)[0]; // draw + remove from pile
-    document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
-  }
-</script>
-
-
+  </script>
 </body>
 </html>
+
