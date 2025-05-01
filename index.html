@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Draw a Card</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    img { max-width: 300px; margin-top: 20px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Draw Your Card</h1>
+  <button onclick="drawCard()">Draw</button>
+  <div id="result"></div>
+
+  <script>
+    const cards = [
+      "https://your-host.com/image1.png",
+      "https://your-host.com/image2.png",
+      "https://your-host.com/image3.png",
+      // Replace with your actual PNG URLs...
+    ];
+
+    function drawCard() {
+      if (cards.length === 0) {
+        document.getElementById('result').innerHTML = "All cards have been drawn.";
+        return;
+      }
+      const index = Math.floor(Math.random() * cards.length);
+      const url = cards.splice(index, 1)[0]; // remove from list
+      document.getElementById('result').innerHTML = `<img src="${url}" alt="Card">`;
+    }
+  </script>
+</body> 
+</html>
